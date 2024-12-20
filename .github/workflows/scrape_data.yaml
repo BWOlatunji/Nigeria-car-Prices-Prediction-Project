@@ -3,7 +3,7 @@ on:
     branches: main
 
 jobs:
-  import-data:
+  scrape-data:
     runs-on: ubuntu-latest
     steps:
       - name: Set up R
@@ -29,6 +29,9 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add data/survey_data.rds
+          git add data/cars_raw_data.rds
+          git add data/cars_raw_data.csv
+          git add data/cars_cleaned_data.rds
+          git add data/cars_cleaned_data.csv
           git commit -m 'Data updated' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
