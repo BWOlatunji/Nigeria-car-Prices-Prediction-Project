@@ -134,16 +134,14 @@ cars_cleaned <- all_data %>%
          year_of_manufacture = name %>% str_extract("\\d+"),
          name = name %>% str_remove("\\d+"),
          color = name %>% str_extract("\\s[A-Za-z]+$"),
-         distance = distance %>% str_extract("\\d+")) %>% 
-  separate(region, into = c("state", "city"), 
+         mileage = distance %>% str_extract("\\d+")) %>% 
+  separate(region, into = c("registered_state", "registered_city"), 
            sep = ", ", fill = "right", remove = FALSE) %>% 
-  select(-region)
+  select(-c(distance, region))
 
 
-
-
-write_rds(all_data, "cars_raw_data.rds")
-write_csv(all_data, "cars_raw_data.csv")
-write_rds(cars_cleaned, "cars_cleaned_data.rds")
-write_csv(cars_cleaned, "cars_cleaned_data.csv")
+write_rds(all_data, "data/cars_raw_data.rds")
+write_csv(all_data, "data/cars_raw_data.csv")
+write_rds(cars_cleaned, "data/cars_cleaned_data.rds")
+write_csv(cars_cleaned, "data/cars_cleaned_data.csv")
 
