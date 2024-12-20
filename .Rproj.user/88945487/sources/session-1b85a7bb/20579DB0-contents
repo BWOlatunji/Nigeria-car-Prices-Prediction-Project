@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Scrape and Clean data
-        run: Rscript -e 'source("R/scrape-data.R")'
+        run: Rscript -e 'source("R/scrape_data.R")'
 
       - name: Commit results
         run: |
