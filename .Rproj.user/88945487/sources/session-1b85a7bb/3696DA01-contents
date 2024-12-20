@@ -1,0 +1,29 @@
+
+cars_section_source <- car_section$getPageSource()
+# Step 4: Get the page source ----
+page_source <- remDr$getPageSource()
+
+# Step 5: Parse the HTML with rvest ----
+html <- read_html(page_source %>% unlist())
+
+# Extract car details
+car_data <- html %>%
+  html_nodes(".car-feature--wide-mobile") %>%
+  map_df(~{
+    name <- .x %>% html_node(".car-feature__name") %>% html_text(trim = TRUE)
+    price <- .x %>% html_node(".car-feature__amount") %>% html_text(trim = TRUE)
+    location <- .x %>% html_node(".car-feature__region") %>% html_text(trim = TRUE)
+    usage <- .x %>% html_node(".car-feature__others__item:nth-child(1)") %>% html_text(trim = TRUE)
+    mileage <- .x %>% html_node(".car-feature__others__item:nth-child(2)") %>% html_text(trim = TRUE)
+    link <- .x %>% html_attr("href")
+    
+    # Return as a data frame row
+    tibble(
+      car_name = name,
+      price = price,
+      location = location,
+      usage_type = usage,
+      mileage = mileage,
+      link = paste0(url, link)
+    )
+  })

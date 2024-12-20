@@ -1,0 +1,7 @@
+
+# Locate the "Next" button by its class or XPath
+# next_button <- remDr$findElement(using = "css selector", "a.pagination__next")
+# 
+# # Scroll to the "Next" button using JavaScript
+# remDr$executeScript("arguments[0].scrollIntoView(true);", list(next_button))
+# next_button$clickElement()

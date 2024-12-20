@@ -1,0 +1,37 @@
+---
+title: "Nigerian Car Prices Prediction"
+author: "Bilikisu Olatunji"
+format: html
+editor: visual
+---
+
+## **About Dataset**
+
+In the automotive sector, pricing analytics play an essential role for companies and individuals to assess the market price of a vehicle before putting it on sale or buying it.
+
+This data was scraped from cars45.com which is an online marketplace in Nigeria which connects buyers with sellers of used cars.
+
+## Import Libraries
+
+```{r}
+library(rvest)
+library(RSelenium)
+library(wdman)
+library(netstat)
+library(tidyverse)
+library(tidymodels)
+library(janitor)
+```
+
+### **Basic Navigation**
+
+```{r}   
+rs_driver_object <- rsDriver(browser = "chrome",
+                             chromever = "131.0.6778.204",
+                             verbose = F,
+                             port = free_port())
+
+remDr <- rs_driver_object$client
+remDr$navigate("https://www.cars45.com/listing")
+```
+

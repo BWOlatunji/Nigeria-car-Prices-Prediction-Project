@@ -1,0 +1,7 @@
+"0","rs_driver_object <- rsDriver(browser = ""chrome"","
+"0","                             chromever = ""131.0.6778.204"","
+"0","                             verbose = F,"
+"0","                             port = free_port())"
+"0",""
+"0","remDr <- rs_driver_object$client"
+"0","remDr$navigate(""https://www.cars45.com/listing"")"
